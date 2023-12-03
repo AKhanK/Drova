@@ -1,16 +1,14 @@
-from django.urls import path ,include
+from django.contrib import admin
+from django.urls import path,include
 from app.api import views
-from rest_framework.routers import DefaultRouter
-
-
-router = DefaultRouter()
-
-router.register('imageapi' , views.Imageapi , basename = 'imageapis/'),
-router.register('videoapi' , views.Videoapi , basename = 'videoapis/'),
-router.register('audioapi' , views.Audioapi , basename = 'audioapis/'),
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('' , include(router.urls)),
-    path('auth/' , include('rest_framework.urls' , namespace = 'rest_framework'))
+    path('admin/', admin.site.urls),
+    path('',include('app.urls')),
+    path ('api/' , include('app.api.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT) 
