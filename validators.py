@@ -2,9 +2,8 @@ from django.core.exceptions import ValidationError
 
 def file_size(value):
     filesize=value.size
-    filesize>419430400
+    filesize>519437799
     
 
 
 
-    # raise ValidationError("maximum size is  mb")
