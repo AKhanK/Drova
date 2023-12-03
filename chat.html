@@ -1,0 +1,40 @@
+{% extends 'management/dashboard.html' %}
+
+{% block content %}
+
+<div class="container text-center">
+    <div class="row" >
+         <div class="col-8" >
+
+
+     {% if msgs %}
+        {% for msg in msgs %}<br>
+         <div class="alert alert-secondary" role="alert" style="background-color: rgba(20, 70, 80, 0.871) ; border: black; width:300px;color: #000;box-shadow: 4px 4px 4px #000;margin-left: -1px;">
+            {{msg.body}}
+            <small class="text-muted" >
+                 @{{msg.user.username}}  <br>
+                {{msg.msg_created}}
+            </small> 
+         </div>
+           
+              
+
+        {% endfor %}
+     {% endif %}
+    </div>
+
+ <div class="col-3"  >
+    <br><br>
+    {% if form %}
+
+      <form method="POST">
+         {% csrf_token %} 
+         {{form.as_p}} 
+         <button type="submit" class="btn btn-dark">POST</button>
+      </form>
+    {% endif %} 
+ </div>
+
+
+
+{% endblock content %}
