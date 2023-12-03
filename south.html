@@ -1,0 +1,124 @@
+{% extends 'management/dashboard.html' %}
+
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+<title></title>
+<link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  <br>
+  <div class="container">
+        
+   <!-- <div>
+    <form action="." method="post" enctype="multipart/form-data">
+    
+         {% csrf_token %}
+       <h5 style="text-shadow: 2px 2px 2px white;">Title : {{form.caption}}<br></h5>
+       <h5 style="text-shadow: 2px 2px 2px white;"> Video :  {{form.video}}<br><br></h5>
+     <button type="submit" class="btn btn-outline-success">POST</button>
+ 
+    </form>
+   <br>
+ 
+ 
+   <hr style="color: #ffffff;">
+ <br>
+ </div>-->
+
+ 
+ {% for x in b %}
+ {% if forloop.first %}<div class="row ">{% endif %}
+ <br>
+
+ <div class="col-lg-3 col-md-4 col-9">
+
+         <h6  class="text-center;font-monospace"  style="text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.871);color:#ffffff;">{{x.caption}}</h6>
+
+         <video
+         id="my-video"
+         class="video-js"
+         controls
+         preload="auto"
+         width="250"
+         height="200"
+         {% if x.thumb %}
+         poster="{{x.thumb.url}}"
+         {% endif %}
+         data-setup="{}"
+       >
+         <source src="{{x.video.url}}" type="video/mp4" />
+       </video>
+
+   <!--<video class="embed-responsive embed-responsive-21by9" controls="controls" width="300" length="300" style="max-width: 250px;box-shadow: 3px 3px 3px #c72222;">
+
+     <source src="{{x.video.url}}" type="video/mp4" ><br>
+
+   </video>-->
+   
+   <br>
+   <hr style="color: #ffffff; box-shadow: 2px 2px 2px #000;">
+ 
+ </div>
+
+ 
+ {% if forloop.counter|divisibleby:4 %}
+ 
+    </div>
+      <div class=row>
+ {% endif %}
+ {% if forloop.last %}</div>{% endif %}
+
+ {% endfor %}
+
+ <br>
+ <br>
+ <br>
+ <br>
+
+      
+  
+ {% if b.has_previous %}
+   
+ <a class="btn btn-outline-danger" href="?page=1" style="font-size: smaller;padding: 5px;">First</a>
+
+
+    <a  class="btn btn-outline-light"  href="?page={{ b.previous_page_number }}" style="font-size: smaller;padding: 5px;">Prev</a>
+ 
+ {% endif %}
+
+ {% for i in page_list %}
+ 
+   
+      <a class="page-link;col-12"  href="?page={{i}}" style="text-decoration: none;margin-left: 10px;color:#000;text-shadow: 1px 1px 1px #ffffff;">{{i}}</a>
+    
+  
+  {% endfor %}
+
+
+
+   {% if b.has_next %}
+
+    <a class="btn btn-outline-light" href="?page={{ b.next_page_number }}" style="font-size: smaller;padding: 5px;">Next</a>
+
+
+    <a class="btn btn-outline-danger" href="?page={{ last }}" style="font-size: smaller;padding: 5px;">Last</a>
+
+  {% endif %}
+
+        
+   
+   </div>
+
+        <br>
+        <br>
+        <br>
+        
+        <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script> 
+   
+</body>
+</html>
+{% endblock content %}
