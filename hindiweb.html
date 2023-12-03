@@ -13,22 +13,7 @@
   <br>
   <div class="container">
         
-   <!-- <div>
-    <form action="." method="post" enctype="multipart/form-data">
-    
-         {% csrf_token %}
-       <h5 style="text-shadow: 2px 2px 2px white;">Title : {{form.caption}}<br></h5>
-       <h5 style="text-shadow: 2px 2px 2px white;"> Video :  {{form.video}}<br><br></h5>
-     <button type="submit" class="btn btn-outline-success">POST</button>
  
-    </form>
-   <br>
- 
- 
-   <hr style="color: #ffffff;">
- <br>
- </div>-->
-
  
  {% for x in bbb %}
  {% if forloop.first %}<div class="row ">{% endif %}
@@ -53,11 +38,6 @@
          <source src="{{x.video.url}}" type="video/mp4" />
        </video>
 
-   <!--<video class="embed-responsive embed-responsive-21by9" controls="controls" width="300" length="300" style="max-width: 250px;box-shadow: 3px 3px 3px #c72222;">
-
-     <source src="{{x.video.url}}" type="video/mp4" ><br>
-
-   </video>-->
    
    <br>
    <hr style="color: #ffffff; box-shadow: 2px 2px 2px #000;">
