@@ -392,28 +392,3 @@ def Hindiwebs(request):
 
 
 
-"""@login_required(login_url='login')
-def Images(request ):
-      all_video=Image.objects.all()
-      paginator = Paginator(all_video , 6)
-      page = request.GET.get('page')
-      all_video = paginator.get_page(page)
-      total_pages = all_video.paginator.num_pages
-      try:
-        all_video=paginator.page(page)
-      except PageNotAnInteger:
-        all_video=paginator.page(1)
-      except:
-        all_video=paginator.page(paginator.num_pages)
-      if request.method == "POST":
-           form=ImageForm(data=request.POST,files=request.FILES)
-           if form.is_valid():
-              form.save()
-              obj=form.instance
-              return render(request,"management/images.html" , {'obj':obj })
-           else:
-             form = ImageForm()
-             img=Image.objects.all()
-             return render(request,"management/images.html",{"img":img, "form":form ,'aa':all_video ,'page':page ,'last':total_pages , 'page_list':[i+1 for i in range(total_pages)]})
-          
-      return render(request , 'management/images.html')"""
